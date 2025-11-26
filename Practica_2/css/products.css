@@ -1,0 +1,110 @@
+/* products.css - estilos sencillos para la mini-tienda */
+:root{
+  --gap: 12px;
+  --accent: #0b5ed7;
+  --muted: #666;
+}
+
+*{box-sizing:border-box}
+body{
+  font-family: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+  margin:0;
+  padding:0;
+  line-height:1.4;
+  color:#111;
+  background:#f7f7fb;
+}
+
+.site-header, .site-footer{
+  background:linear-gradient(90deg,#eaf1ff,#fff);
+  padding:16px;
+  border-bottom:1px solid #e2e8f0;
+}
+
+.site-header h1{margin:0 0 4px 0;font-size:1.4rem}
+.site-header nav a{color:var(--accent); text-decoration:none; margin-right:8px}
+
+.container{
+  display:flex;
+  gap:24px;
+  padding:20px;
+  max-width:1000px;
+  margin:20px auto;
+}
+
+.controls{
+  width:320px;
+  background:white;
+  padding:16px;
+  border-radius:8px;
+  box-shadow:0 2px 8px rgba(10,10,20,0.05);
+}
+
+.controls form label{
+  display:block;
+  margin-bottom:8px;
+  font-size:0.95rem;
+}
+
+.controls input, .controls select, .controls button{
+  width:100%;
+  padding:8px;
+  margin-top:6px;
+  margin-bottom:10px;
+  border:1px solid #d0d7e0;
+  border-radius:6px;
+}
+
+.controls button{
+  cursor:pointer;
+  background:var(--accent);
+  color:white;
+  border:none;
+}
+
+.products{
+  flex:1;
+  background:white;
+  padding:16px;
+  border-radius:8px;
+  box-shadow:0 2px 8px rgba(10,10,20,0.03);
+}
+
+.product-list{list-style:none;padding:0;margin:0;display:flex;flex-direction:column;gap:10px}
+
+.product{
+  display:flex;
+  flex-direction:column;
+  padding:10px;
+  border:1px solid #eef2f7;
+  border-radius:6px;
+}
+
+.product-main{
+  display:flex;
+  gap:12px;
+  align-items:center;
+}
+
+.product-name{flex:1}
+.product-price{font-weight:600;color:#0b5ed7}
+.product-category{font-size:0.85rem;color:var(--muted);padding-left:6px}
+
+.product-actions{
+  margin-top:8px;
+  display:flex;
+  gap:8px;
+}
+
+.btn-toggle-details, .btn-delete{
+  padding:6px 8px;
+  border-radius:6px;
+  background:#eef4ff;
+  border:none;
+  cursor:pointer;
+}
+
+.btn-delete{background:#ffecec;color:#900}
+
+.product-details{margin-top:10px;border-top:1px dashed #eef2f7;padding-top:10px}
+.hidden{display:none}

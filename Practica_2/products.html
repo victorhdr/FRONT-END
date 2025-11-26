@@ -1,0 +1,90 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Mini-tienda - Práctica 2 (JS + DOM)</title>
+  <!-- Enlaza el CSS nuevo -->
+  <link rel="stylesheet" href="css/products.css" />
+</head>
+<body>
+  <header class="site-header">
+    <h1>Mini-Tienda (Dinámico)</h1>
+    <nav>
+      <a href="index.html">Login</a> |
+      <a href="registro.html">Registro</a> |
+      <a href="products.html" aria-current="page">Productos</a>
+    </nav>
+  </header>
+
+  <main class="container">
+    <section class="controls">
+      <h2>Añadir producto</h2>
+      <form id="add-product-form">
+        <label>
+          Nombre:
+          <input id="p-name" required />
+        </label>
+        <label>
+          Precio:
+          <input id="p-price" type="number" step="0.01" required />
+        </label>
+        <label>
+          Categoría:
+          <select id="p-category">
+            <option value="general">General</option>
+            <option value="electronica">Electrónica</option>
+            <option value="ropa">Ropa</option>
+            <option value="alimentacion">Alimentación</option>
+          </select>
+        </label>
+        <button type="submit" id="btn-add">Añadir producto</button>
+      </form>
+
+      <h3>Filtrar</h3>
+      <label>
+        Filtrar por categoría:
+        <select id="filter-category">
+          <option value="all">Todas</option>
+          <option value="general">General</option>
+          <option value="electronica">Electrónica</option>
+          <option value="ropa">Ropa</option>
+          <option value="alimentacion">Alimentación</option>
+        </select>
+      </label>
+      <p id="summary">0 productos — Total precio: 0.00 €</p>
+    </section>
+
+    <section class="products">
+      <h2>Lista de productos</h2>
+      <!-- Lista donde se añadirán productos dinámicamente -->
+      <ul id="products-list" class="product-list" aria-live="polite"></ul>
+    </section>
+  </main>
+
+  <template id="product-template">
+    <li class="product">
+      <div class="product-main">
+        <strong class="product-name"></strong>
+        <span class="product-price"></span>
+        <span class="product-category"></span>
+      </div>
+      <div class="product-actions">
+        <button class="btn-toggle-details">Detalles</button>
+        <button class="btn-delete">Eliminar</button>
+      </div>
+      <div class="product-details hidden">
+        <p class="product-desc">Sin descripción.</p>
+        <img class="product-image" src="" alt="" hidden />
+      </div>
+    </li>
+  </template>
+
+  <footer class="site-footer">
+    <small>Práctica 2 — Dinamismo con JavaScript y el DOM</small>
+  </footer>
+
+  <!-- Enlaza el JS nuevo -->
+  <script src="js/products.js" defer></script>
+</body>
+</html>
