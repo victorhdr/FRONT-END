@@ -1,0 +1,72 @@
+{% extends "base.html" %}
+{% block title %}Menú - MiTienda{% endblock %}
+
+{% block content %}
+<section class="py-4">
+  <div class="container">
+    
+    <h1 class="h3 mb-4 text-center">Menú principal</h1>
+    <p class="text-center text-muted mb-5">
+      Hola, <strong>{{ user.email }}</strong> 👋 <br>
+      ¿Qué quieres hacer hoy?
+    </p>
+
+    <div class="row g-4 justify-content-center">
+
+      <!-- Usuario -->
+      <div class="col-12 col-sm-6 col-lg-3">
+        <div class="card shadow-sm h-100 text-center p-3">
+          <div class="card-body d-flex flex-column">
+            <h4 class="h6">👤 Usuario</h4>
+            <p class="small flex-grow-1">Ver y editar tus datos básicos.</p>
+            <a href="{{ url_for('main.usuario') }}" class="btn btn-primary btn-sm mt-auto">
+              Abrir
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Preferencias -->
+      <div class="col-12 col-sm-6 col-lg-3">
+        <div class="card shadow-sm h-100 text-center p-3">
+          <div class="card-body d-flex flex-column">
+            <h4 class="h6">⚙️ Preferencias</h4>
+            <p class="small flex-grow-1">Configura opciones de la aplicación.</p>
+            <a href="{{ url_for('main.preferencias') }}" class="btn btn-primary btn-sm mt-auto">
+              Abrir
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Nuevo producto -->
+      <div class="col-12 col-sm-6 col-lg-3">
+        <div class="card shadow-sm h-100 text-center p-3">
+          <div class="card-body d-flex flex-column">
+            <h4 class="h6">➕ Nuevo producto</h4>
+            <p class="small flex-grow-1">Crea un nuevo producto para el catálogo.</p>
+            <a href="{{ url_for('main.nuevo') }}" class="btn btn-success btn-sm mt-auto">
+              Crear
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Productos -->
+      <div class="col-12 col-sm-6 col-lg-3">
+        <div class="card shadow-sm h-100 text-center p-3">
+          <div class="card-body d-flex flex-column">
+            <h4 class="h6">🛍️ Productos</h4>
+            <p class="small flex-grow-1">Explora el catálogo con imágenes.</p>
+            <a href="{{ url_for('main.productos') }}" class="btn btn-primary btn-sm mt-auto">
+              Ver catálogo
+            </a>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+  </div>
+</section>
+{% endblock %}
