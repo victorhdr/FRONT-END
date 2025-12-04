@@ -1,0 +1,89 @@
+{% extends "base.html" %}
+{% block title %}Iniciar sesión - MiTienda{% endblock %}
+
+{% block content %}
+<section class="login-section py-5">
+  <div class="row justify-content-center">
+    <div class="col-12 col-sm-10 col-md-8 col-lg-6">
+      <article class="card shadow-sm">
+        <div class="card-body p-4">
+          <h1 class="h3 mb-3 text-center">Iniciar sesión</h1>
+          <p class="text-center text-muted small">Introduce tu correo y contraseña</p>
+
+          <form id="loginForm"
+                class="form login-form"
+                method="post"
+                action="{{ url_for('auth.login') }}"
+                novalidate>
+
+            {{ form.csrf_token() if form and form.csrf_token is defined }}
+
+            <!-- EMAIL -->
+            <div class="mb-3 form__group">
+              <label for="loginEmail" class="form-label">Correo electrónico</label>
+              <input type="email"
+                     id="loginEmail"
+                     name="email"
+                     class="form-control"
+                     required>
+              <div class="invalid-feedback">Introduce un correo válido.</div>
+            </div>
+
+            <!-- PASSWORD -->
+            <div class="mb-3 position-relative form__group">
+              <label for="loginPassword" class="form-label">Contraseña</label>
+              <div class="input-group">
+                <input type="password"
+                       id="loginPassword"
+                       name="password"
+                       class="form-control"
+                       required>
+                <button class="btn btn-outline-secondary"
+                        type="button"
+                        id="togglePwdLogin"
+                        aria-label="Mostrar contraseña">
+                  👁️
+                </button>
+              </div>
+              <div class="invalid-feedback">Introduce tu contraseña.</div>
+            </div>
+
+            <!-- RECORDAR -->
+            <div class="d-flex justify-content-between align-items-center mb-3">
+              <div class="form-check">
+                <input class="form-check-input" type="checkbox" id="rememberMe" name="remember">
+                <label class="form-check-label" for="rememberMe">Recordarme</label>
+              </div>
+              <a href="#" class="small">¿Olvidaste la contraseña?</a>
+            </div>
+
+            <!-- SUBMIT -->
+            <div class="d-grid">
+              <button type="submit" class="btn btn-primary btn-lg">Entrar</button>
+            </div>
+
+            <!-- MENSAJE BACKEND -->
+            <div class="mt-3" id="loginMessage" role="status" aria-live="polite">
+              {% if form and form.errors %}
+                <span class="text-danger small">Revisa los datos introducidos.</span>
+              {% endif %}
+            </div>
+
+          </form>
+
+          <hr>
+          <p class="text-center small mb-0">
+            ¿No tienes cuenta?
+            <a href="{{ url_for('main.registro') }}">Regístrate</a>
+          </p>
+
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+{% endblock %}
+
+{% block extra_js %}
+<script type="module" src="{{ url_for('static', filename='js/loginController.js') }}"></script>
+{% endblock %}

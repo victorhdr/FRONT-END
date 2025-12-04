@@ -1,0 +1,23 @@
+<form method="post" class="mx-auto" style="max-width:480px;">
+  <div class="mb-3">
+    <label for="name" class="form-label">Nombre</label>
+    <input type="text" id="name" name="name" class="form-control" required>
+  </div>
+
+  <div class="mb-3">
+    <label for="price" class="form-label">Precio (€)</label>
+    <input type="number" id="price" name="price" step="0.01" min="0" class="form-control" required>
+  </div>
+
+  <div class="mb-3">
+    <label for="image_path" class="form-label">Imagen</label>
+    <select id="image_path" name="image_path" class="form-select">
+      <option value="products/p1.svg">products/p1.svg</option>
+      <option value="products/p2.svg">products/p2.svg</option>
+      <option value="products/p3.svg">products/p3.svg</option>
+      <option value="products/p4.svg">products/p4.svg</option>
+    </select>
+  </div>
+
+  <button class="btn btn-primary" type="submit">Crear</button>
+</form>

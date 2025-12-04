@@ -1,0 +1,80 @@
+:root{
+  /* Variables CSS (colores y espaciados) */
+  --color-bg: #f7f9fc;
+  --color-primary: #0d6efd;
+  --color-secondary: #6c757d;
+  --color-accent: #0dcaf0;
+  --color-dark: #0b2545;
+  --gap: 1rem;
+  --radius: 12px;
+  --max-width-form: 520px;
+  --font-sans: "Inter", system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+}
+
+/* Reset básico */
+*{box-sizing:border-box}
+html,body{height:100%}
+body{
+  font-family:var(--font-sans);
+  background: linear-gradient(180deg, var(--color-bg), #ffffff);
+  color:var(--color-dark);
+  -webkit-font-smoothing:antialiased;
+  -moz-osx-font-smoothing:grayscale;
+  margin:0;
+  line-height:1.4;
+}
+
+/* Layout */
+.site-header{border-bottom:1px solid rgba(11,37,69,0.05)}
+.main-content{min-height:calc(100vh - 220px); padding-top:2rem; padding-bottom:2rem}
+
+/* Card */
+.card{border-radius:var(--radius); overflow:hidden}
+.card-body{padding:1.5rem}
+
+/* Form BEM-ish */
+.form__group{margin-bottom:var(--gap)}
+.form label{font-weight:600}
+.form .form-control:focus{box-shadow:0 0 0 0.15rem rgba(13,110,253,0.15); border-color:var(--color-primary)}
+
+/* Input-group eye button styling */
+#togglePwdLogin, #togglePwdRegister{
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  min-width:44px;
+  cursor:pointer;
+  user-select:none;
+}
+
+/* Footer */
+.site-footer{border-top:1px solid rgba(255,255,255,0.03); position:relative}
+
+/* Responsive and widths */
+.login-section .card, .register-section .card{
+  max-width:var(--max-width-form);
+  margin-left:auto;
+  margin-right:auto;
+}
+
+/* Focus visible (accessibility) */
+:focus{outline: none}
+:focus-visible{outline: 3px solid rgba(13,110,253,0.25); outline-offset:3px; border-radius:6px}
+
+/* Small screens - mobile-first */
+@media (max-width: 767px){
+  .card-body{padding:1rem}
+}
+
+/* Tablet */
+@media (min-width: 768px) and (max-width: 1023px){
+  .card-body{padding:1.25rem}
+}
+
+/* Desktop */
+@media (min-width: 1024px){
+  .card-body{padding:1.75rem}
+}
+
+/* Small utilities */
+.text-muted.small{font-size:.85rem}
