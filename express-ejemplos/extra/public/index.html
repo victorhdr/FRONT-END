@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <title>Adaptación Extra Express</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <h1>Adaptación Extra — Express Unificado</h1>
+
+  <!-- Bloque 1: API GET -->
+  <section>
+    <h2>💬 Consultar mensaje por nombre (GET)</h2>
+    <input id="nombreInput" type="text" placeholder="Escribe tu nombre">
+    <button id="btnSaludo">Enviar</button>
+    <pre id="resultadoSaludo"></pre>
+  </section>
+
+  <hr>
+
+  <!-- Bloque 2: API POST -->
+  <section>
+    <h2>🧾 Enviar formulario (POST)</h2>
+    <form id="formEdad">
+      <input name="nombre" type="text" placeholder="Nombre">
+      <input name="edad" type="number" placeholder="Edad">
+      <button type="submit">Enviar</button>
+    </form>
+
+    <pre id="resultadoEdad"></pre>
+  </section>
+
+  <script src="script.js"></script>
+</body>
+</html>

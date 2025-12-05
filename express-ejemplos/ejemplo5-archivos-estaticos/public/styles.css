@@ -1,0 +1,13 @@
+/* styles.css para Ejemplo 5 */
+body {
+  font-family: Arial, sans-serif;
+}
+
+h1 {
+  text-align: center;
+}
+
+#parrafo {
+  color: blue;
+  font-size: 1.2rem;
+}

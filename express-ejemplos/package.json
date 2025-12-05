@@ -1,0 +1,12 @@
+{
+  "name": "express-ejemplos-basicos",
+  "version": "1.0.0",
+  "description": "Seis ejemplos básicos de Express con HTML/JS separados.",
+  "main": "index.js",
+  "scripts": {
+    "start": "echo \"Elige un ejemplo y ejecuta: node ejemploX/server.js\""
+  },
+  "dependencies": {
+    "express": "^4.19.0"
+  }
+}
