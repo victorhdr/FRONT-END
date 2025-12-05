@@ -1,0 +1,25 @@
+/* products.css - estilos específicos para la vista de productos + carrito */
+
+/* Imagen de producto en las cards */
+#productsList .card img {
+  object-fit: contain;
+  max-height: 140px;
+}
+
+/* Lista del carrito: scroll si hay muchos productos */
+#cartItems {
+  max-height: 260px;
+  overflow-y: auto;
+}
+
+/* Un pelín más compacto el texto del carrito */
+#cartItems .list-group-item {
+  font-size: 0.9rem;
+}
+
+/* Ajuste para pantallas pequeñas */
+@media (max-width: 767.98px) {
+  #cartItems {
+    max-height: 200px;
+  }
+}

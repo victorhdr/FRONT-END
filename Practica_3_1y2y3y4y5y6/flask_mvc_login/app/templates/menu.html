@@ -1,0 +1,204 @@
+{% extends "base.html" %}
+{% block title %}Menú - MiTienda{% endblock %}
+
+{% block content %}
+<section class="py-4">
+  <div class="container">
+    
+    <h1 class="h3 mb-4 text-center">Menú principal</h1>
+    <p class="text-center text-muted mb-5">
+      Hola, <strong>{{ user.email }}</strong> 👋 <br>
+      ¿Qué quieres hacer hoy?
+    </p>
+
+    <div class="row g-4 justify-content-center">
+
+      <!-- Usuario -->
+      <div class="col-12 col-sm-6 col-lg-3">
+        <div class="card shadow-sm h-100 text-center p-3">
+          <div class="card-body d-flex flex-column">
+            <h4 class="h6">👤 Usuario</h4>
+            <p class="small flex-grow-1">Ver y editar tus datos básicos.</p>
+            <a href="{{ url_for('main.usuario') }}" class="btn btn-primary btn-sm mt-auto">
+              Abrir
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Preferencias -->
+      <div class="col-12 col-sm-6 col-lg-3">
+        <div class="card shadow-sm h-100 text-center p-3">
+          <div class="card-body d-flex flex-column">
+            <h4 class="h6">⚙️ Preferencias</h4>
+            <p class="small flex-grow-1">Configura opciones de la aplicación.</p>
+            <a href="{{ url_for('main.preferencias') }}" class="btn btn-primary btn-sm mt-auto">
+              Abrir
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Nuevo producto -->
+      <div class="col-12 col-sm-6 col-lg-3">
+        <div class="card shadow-sm h-100 text-center p-3">
+          <div class="card-body d-flex flex-column">
+            <h4 class="h6">➕ Nuevo producto</h4>
+            <p class="small flex-grow-1">Crea un nuevo producto para el catálogo.</p>
+            <a href="{{ url_for('main.nuevo') }}" class="btn btn-success btn-sm mt-auto">
+              Crear
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Productos -->
+      <div class="col-12 col-sm-6 col-lg-3">
+        <div class="card shadow-sm h-100 text-center p-3">
+          <div class="card-body d-flex flex-column">
+            <h4 class="h6">🛍️ Productos</h4>
+            <p class="small flex-grow-1">Explora el catálogo con imágenes.</p>
+            <a href="{{ url_for('main.productos') }}" class="btn btn-primary btn-sm mt-auto">
+              Ver catálogo
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Opiniones seguras (Ejercicio 8.7) -->
+      <div class="col-12 col-sm-6 col-lg-3">
+        <div class="card shadow-sm h-100 text-center p-3">
+          <div class="card-body d-flex flex-column">
+            <h4 class="h6">💬 Opiniones seguras</h4>
+            <p class="small flex-grow-1">CSRF, CORS y XSS seguro.</p>
+            <a href="{{ url_for('main.opiniones') }}" class="btn btn-primary btn-sm mt-auto">
+              Abrir
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <!-- 🎬 API YouTube -->
+      <div class="col-12 col-sm-6 col-lg-3">
+        <div class="card shadow-sm h-100 text-center p-3">
+          <div class="card-body d-flex flex-column">
+            <h4 class="h6">🎬 YouTube API</h4>
+            <p class="small flex-grow-1">Reproductor con controles personalizados.</p>
+            <a href="{{ url_for('main.api_youtube') }}" class="btn btn-danger btn-sm mt-auto">
+              Abrir
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <!-- 🗺️ API OSM (OpenStreetMap) -->
+      <div class="col-12 col-sm-6 col-lg-3">
+        <div class="card shadow-sm h-100 text-center p-3">
+          <div class="card-body d-flex flex-column">
+            <h4 class="h6">🗺️ Mapa OSM</h4>
+            <p class="small flex-grow-1">Mapa interactivo con Leaflet.</p>
+            <a href="{{ url_for('main.api_osm') }}" class="btn btn-success btn-sm mt-auto">
+              Abrir
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <!-- 🚀 API NASA (APOD) -->
+      <div class="col-12 col-sm-6 col-lg-3">
+        <div class="card shadow-sm h-100 text-center p-3">
+          <div class="card-body d-flex flex-column">
+            <h4 class="h6">🚀 NASA APOD</h4>
+            <p class="small flex-grow-1">Foto astronómica del día.</p>
+            <a href="{{ url_for('main.api_nasa') }}" class="btn btn-primary btn-sm mt-auto">
+              Abrir
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <!-- 📸 API Fotos Aleatorias (Picsum) -->
+      <div class="col-12 col-sm-6 col-lg-3">
+        <div class="card shadow-sm h-100 text-center p-3">
+          <div class="card-body d-flex flex-column">
+            <h4 class="h6">📸 Fotos aleatorias</h4>
+            <p class="small flex-grow-1">Generador visual de imágenes aleatorias.</p>
+            <a href="{{ url_for('main.api_fotos') }}" class="btn btn-dark btn-sm mt-auto">
+              Abrir
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <!-- 👤 API RandomUser -->
+      <div class="col-12 col-sm-6 col-lg-3">
+        <div class="card shadow-sm h-100 text-center p-3">
+          <div class="card-body d-flex flex-column">
+            <h4 class="h6">👤 Random User</h4>
+            <p class="small flex-grow-1">Genera un usuario aleatorio realista.</p>
+            <a href="{{ url_for('main.api_randomuser') }}" class="btn btn-secondary btn-sm mt-auto">
+              Abrir
+            </a>
+          </div>
+        </div>
+      </div>
+      
+    </div>
+
+    <!-- 🔵 Botón AJAX clásico GET -->
+    <div class="text-center mt-5">
+      <button id="btnAjaxGet" class="btn btn-outline-primary">
+        Cargar productos vía AJAX (GET)
+      </button>
+    </div>
+
+    <!-- 🔵 Botón AJAX clásico POST -->
+    <div class="text-center mt-3">
+      <button id="btnAjaxPost" class="btn btn-outline-secondary">
+        Enviar JSON vía AJAX (POST)
+      </button>
+    </div>
+
+    <!-- 🔶 AJAX con timeout -->
+    <div class="text-center mt-3">
+      <button id="btnAjaxTimeout" class="btn btn-outline-warning">
+        Probar AJAX con timeout (2s)
+      </button>
+    </div>
+
+    <!-- 🔶 Cancelar petición AJAX -->
+    <div class="text-center mt-2">
+      <button id="btnAjaxAbort" class="btn btn-outline-danger">
+        Cancelar petición AJAX
+      </button>
+    </div>
+
+    <!-- 🟦 Ejercicio 8.5 - uso avanzado de fetch() -->
+    <div class="text-center mt-4">
+      <button id="btnFetchCatalogo" class="btn btn-info">
+        Recargar catálogo (fetch)
+      </button>
+    </div>
+
+    <!-- Botón para mostrar / ocultar catálogo -->
+    <div class="text-center mt-2">
+      <button id="btnToggleCatalogo" class="btn btn-outline-dark d-none">
+        Ocultar catálogo
+      </button>
+    </div>
+
+    <!-- Contenedor del catálogo dinámico -->
+    <div id="zonaFetch" class="row g-4 mt-4 justify-content-center"></div>
+
+  </div>
+</section>
+
+<!-- Scripts AJAX -->
+<script src="{{ url_for('static', filename='js/ajaxGetProducts.js') }}"></script>
+<script src="{{ url_for('static', filename='js/ajaxPostJson.js') }}"></script>
+<script src="{{ url_for('static', filename='js/ajaxTimeoutAbort.js') }}"></script>
+
+<!-- Script fetch() del Ejercicio 8.5 -->
+<script src="{{ url_for('static', filename='js/fetchCatalog.js') }}"></script>
+
+{% endblock %}

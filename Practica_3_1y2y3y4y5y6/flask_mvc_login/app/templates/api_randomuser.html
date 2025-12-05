@@ -1,0 +1,85 @@
+{% extends "base.html" %}
+{% block title %}Random User API - MiTienda{% endblock %}
+
+{% block extra_css %}
+<style>
+  /* Animación fade-in */
+  .fade-in {
+    animation: fadeIn 0.6s ease-in-out;
+  }
+
+  @keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+
+  /* Foto con borde degradado */
+  #userImg {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    object-fit: cover;
+    padding: 4px;
+
+    /* efecto premium */
+    background: linear-gradient(135deg, #6a11cb, #2575fc);
+    box-shadow: 0 4px 12px rgba(0,0,0,0.25);
+
+    /* 🔥 Fuerza centrado */
+    display: block !important;
+    margin: 0 auto !important;
+  }
+
+  /* Tarjeta elegante */
+  .profile-card {
+    max-width: 420px;
+    margin: 0 auto;
+    border-radius: 12px;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+
+    /* 🔥 Centrar TODO el contenido */
+    text-align: center !important;
+  }
+
+  /* Hover */
+  .profile-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 6px 20px rgba(0,0,0,0.25);
+  }
+
+  /* Botón flotante */
+  #btnFloating {
+    margin-top: 20px;
+  }
+
+  /* Iconos SVG */
+  .icon {
+    width: 18px;
+    height: 18px;
+    vertical-align: middle;
+    margin-right: 6px;
+  }
+</style>
+{% endblock %}
+
+{% block content %}
+<div class="container py-4">
+
+  <h1 class="h3 text-center mb-4">👤 Random User API</h1>
+
+  <!-- Botón principal -->
+  <div class="text-center mb-3">
+    <button id="btnRandomUser" class="btn btn-primary">
+      Generar usuario aleatorio
+    </button>
+  </div>
+
+  <!-- Tarjeta dinámica -->
+  <div id="userResult" class="text-center mt-4"></div>
+
+</div>
+{% endblock %}
+
+{% block extra_js %}
+<script src="{{ url_for('static', filename='js/api_randomuser.js') }}"></script>
+{% endblock %}
