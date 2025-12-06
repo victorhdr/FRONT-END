@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Cliente REST — Autenticación</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <h1>🔐 Cliente REST con Login y Zona Privada</h1>
+
+  <!-- LOGIN FORM -->
+  <section id="loginSection">
+    <h2>Iniciar sesión</h2>
+    <input id="email" type="email" placeholder="Email" />
+    <input id="password" type="password" placeholder="Contraseña" />
+    <button id="btnLogin">Entrar</button>
+    <p id="loginError" class="error"></p>
+  </section>
+
+  <!-- ZONA PRIVADA -->
+  <section id="privateSection" class="hidden">
+    <h2>Zona Privada</h2>
+    <button id="btnPrivado">Obtener información privada</button>
+    <button id="btnLogout" class="logout">Cerrar sesión</button>
+
+    <pre id="privadoResultado"></pre>
+  </section>
+
+  <script src="script.js"></script>
+</body>
+</html>

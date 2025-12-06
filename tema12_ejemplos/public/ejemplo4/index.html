@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="utf-8">
+    <title>Ejemplo 4 - Código de estado HTTP</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="container">
+    <h1>Ejemplo 4</h1>
+    <h2>Comprobación del código de estado</h2>
+    <p>
+        Aquí aplicamos el patrón del tema para comprobar <code>respuesta.status</code>.
+        Si el código no es 200, mostramos un mensaje de error y no intentamos leer el JSON.
+    </p>
+
+    <label>
+        Número a enviar:
+        <input type="text" id="inputNum" value="42">
+    </label>
+    <button id="btnEstado">Enviar</button>
+
+    <div class="output" id="out4"></div>
+
+    <p><a href="../index.html">Volver al índice</a></p>
+</div>
+<script src="ejemplo4.js"></script>
+</body>
+</html>
