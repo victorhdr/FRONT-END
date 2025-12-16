@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Mi sitio HTML : Inicio</title>
+  <style>
+    table, th, td {
+      border: 1px solid black;
+      border-collapse: collapse;
+      padding: 6px;
+    }
+  </style>
+</head>
+<body>
+  <!-- Tabla de contenidos con enlaces internos -->
+  <h1>Mi Sitio Web de la Práctica 1</h1>
+  <ul>
+    <li><a href="#intro">Ir a Introducción</a></li>
+    <li><a href="#contenido">Ir a Contenido</a></li>
+  </ul>
+
+  <!-- Imagen con ruta relativa -->
+  <a href="index.html">
+    <img src="images/logo.png" alt="Logotipo del sitio" width="200">
+  </a>
+
+  <!-- Sección de introducción -->
+  <h2 id="intro">Introducción</h2>
+  <p>Este es un sitio web sencillo creado como parte de la práctica de Desarrollo Front-END.</p>
+  <p>En él aprenderé a usar etiquetas básicas de HTML, como encabezados, párrafos y más.</p>
+
+  <!-- Sección de contenido -->
+  <h2 id="contenido">Contenido</h2>
+  <p>En esta sección incluiré ejemplos de listas, tablas, imágenes y enlaces.</p>
+  <p>Además, se construirá un formulario accesible en la página de contacto.</p>
+
+  <!-- Listas -->
+  <h3>Lista ordenada</h3>
+  <ol>
+    <li>Primer paso: crear la estructura básica en HTML5.</li>
+    <li>Segundo paso: añadir contenido semántico.</li>
+    <li>Tercer paso: integrar formularios y validarlos.</li>
+  </ol>
+
+  <h3>Lista desordenada</h3>
+  <ul>
+    <li>HTML</li>
+    <li>CSS</li>
+    <li>JavaScript</li>
+  </ul>
+
+  <!-- Tabla simple -->
+  <h3>Recursos útiles</h3>
+  <table>
+    <tr>
+      <th>Recurso</th>
+      <th>Descripción</th>
+    </tr>
+    <tr>
+      <td>Guía HTML</td>
+      <td>Referencias de etiquetas básicas</td>
+    </tr>
+    <tr>
+      <td>Validador W3C</td>
+      <td>Comprobación de errores del marcado</td>
+    </tr>
+  </table>
+
+  <!-- Enlace externo -->
+  <p>Visita el <a href="https://www.w3.org/" target="_blank">sitio oficial del W3C</a> 
+     para aprender más sobre los estándares web.</p>
+
+  <!-- Enlace interno a otra página del sitio -->
+  <p><a href="contacto.html">Ir a la página de contacto</a></p>
+</body>
+</html>

@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Mi sitio HTML : Contacto</title>
+</head>
+<body>
+  <h1>Página de Contacto</h1>
+  <p>Completa el siguiente formulario con tus datos y preferencias:</p>
+
+  <form action="#" method="get">
+    <!-- Datos personales -->
+    <fieldset>
+      <legend>Datos personales</legend>
+
+      <label for="nombre">Nombre: </label>
+      <input id="nombre" name="nombre" type="text" required><br>
+
+      <label for="correo">Correo: </label>
+      <input id="correo" name="correo" type="email" placeholder="nombre@dominio.com" required><br>
+
+      <label for="nacimiento">Fecha de nacimiento: </label>
+      <input id="nacimiento" name="nacimiento" type="date"><br>
+
+      <label for="nivel">Nivel (1-10): </label>
+      <input id="nivel" name="nivel" type="number" min="1" max="10"><br>
+
+      <label for="favcolor">Color favorito: </label>
+      <input id="favcolor" name="favcolor" type="color">
+    </fieldset>
+
+    <!-- Preferencias -->
+    <fieldset>
+      <legend>Preferencias</legend>
+
+      <p>Sistema operativo:</p>
+      <input id="linux" type="radio" name="os" value="Linux" checked>
+      <label for="linux">Linux</label>
+
+      <input id="macos" type="radio" name="os" value="macOS">
+      <label for="macos">macOS</label>
+
+      <input id="windows" type="radio" name="os" value="Windows">
+      <label for="windows">Windows</label><br><br>
+
+      <label for="dept">Departamento: </label>
+      <select id="dept" name="dept">
+        <option value="sales">Comercial</option>
+        <option value="tech">Técnico</option>
+        <option value="webmaster">Webmaster</option>
+      </select><br><br>
+
+      <label for="mensaje">Mensaje:</label><br>
+      <textarea id="mensaje" name="mensaje" rows="6" cols="40"></textarea><br><br>
+
+      <input id="terminos" type="checkbox" name="terminos" value="si" required>
+      <label for="terminos">Acepto los términos y condiciones</label>
+    </fieldset>
+
+    <br>
+    <button type="submit">Enviar</button>
+  </form>
+
+  <!-- Enlace de vuelta a la página de inicio -->
+  <p><a href="index.html">Volver al inicio</a></p>
+</body>
+</html>

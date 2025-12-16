@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Módulos de Diseño CSS</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header>
+        <h1>Módulos de Diseño CSS</h1>
+    </header>
+
+    <section>
+        <h2>1.1 Modelo de caja (Block e Inline)</h2>
+        <p>Este es un párrafo de ejemplo usando <strong>block</strong>. Tiene padding, borde y margen centrado.</p>
+        <a href="#">Este es un enlace inline</a>
+        <a href="#">Otro enlace inline</a>
+    </section>
+
+    <section>
+        <h2>1.2 Floats (Flotantes)</h2>
+        <div class="clearfix">
+            <div class="caja">Caja flotante 1</div>
+            <div class="caja">Caja flotante 2</div>
+            <p>Este texto rodea las cajas flotantes. Cuando el contenido termina, el contenedor se ajusta gracias a la clase <code>clearfix</code>.</p>
+        </div>
+    </section>
+
+    <section>
+        <h2>1.3 Positioning</h2>
+
+        <p class="relativo">Soy relativo: me muevo 10px abajo y 20px a la derecha.</p>
+
+        <div class="absoluto">Soy absoluto: me ubico arriba a la derecha de mi contenedor.</div>
+
+        <div class="fijo">Soy fijo: siempre visible en la esquina inferior derecha.</div>
+
+        <p class="pegajoso">Soy sticky: me quedo pegajoso arriba cuando haces scroll.</p>
+
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Scroll para ver el sticky en acción.</p>
+        <p>Más contenido para hacer scroll...</p>
+        <p>Más contenido para hacer scroll...</p>
+        <p>Más contenido para hacer scroll...</p>
+    </section>
+
+    <section>
+        <h2>1.4 Flexbox</h2>
+
+        <div class="contenedor">
+            <div class="item">Item 1</div>
+            <div class="item destacado">Item Destacado</div>
+            <div class="item">Item 3</div>
+            <div class="item">Item 4</div>
+        </div>
+
+        <p>En este ejemplo, el "Item Destacado" ocupa más espacio y aparece primero gracias a <code>flex-grow</code> y <code>order</code>.</p>
+    </section>
+
+
+</body>
+</html>

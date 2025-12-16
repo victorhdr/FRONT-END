@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Ejemplo Selectores</title>
+  <style>
+    p.nota a span {
+      color: red;
+      text-decoration: underline;
+    }
+  </style>
+</head>
+<body>
+
+  <h2>Ejemplo de selectores combinados</h2>
+
+  <!-- Caso 1: Sí aplica (p con clase nota, dentro un a, dentro un span) -->
+  <p class="nota">
+    Este es un <a href="#"><span>span dentro de un enlace</span></a> en un párrafo con clase "nota".
+  </p>
+
+  <!-- Caso 2: No aplica (p con clase nota, pero span directo, no dentro de a) -->
+  <p class="nota">
+    Este es un <span>span dentro de un párrafo con clase "nota"</span>, pero sin estar dentro de un enlace.
+  </p>
+
+  <!-- Caso 3: No aplica (p normal sin clase nota) -->
+  <p>
+    Este es un <a href="#"><span>span dentro de un enlace</span></a> en un párrafo sin clase "nota".
+  </p>
+
+  <!-- Caso 4: No aplica (span suelto fuera de todo) -->
+  <span>Span independiente fuera de cualquier párrafo</span>
+
+</body>
+</html>

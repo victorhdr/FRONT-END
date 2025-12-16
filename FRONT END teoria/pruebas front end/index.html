@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Ejemplo Tipografía Accesible</title>
+  <style>
+    html {
+      font-size: 16px; /* tamaño base */
+    }
+
+    body {
+      font-family: Arial, sans-serif;
+      line-height: 1.6;
+      padding: 20px;
+    }
+
+    p {
+      font-size: 1rem; /* = 16px, pero escalable si el usuario cambia la base */
+    }
+
+    h1 {
+      font-size: clamp(1.8rem, 4vw, 3rem);
+      color: darkblue;
+    }
+
+    .box {
+      border: 1px dashed #888;
+      padding: 10px;
+      margin: 20px 0;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="box">
+    <h1>Este es un H1 escalable</h1>
+    <p>Este párrafo usa <code>1rem</code> (≈16px). Si cambias el tamaño base del navegador, este texto crecerá o disminuirá proporcionalmente.</p>
+  </div>
+
+  <div class="box">
+    <h1>Prueba de tamaño en distintas pantallas</h1>
+    <p>El titular anterior se ajusta con <code>clamp(1.8rem, 4vw, 3rem)</code>, 
+       lo que significa que será fluido según el ancho de la pantalla, pero no bajará de 1.8rem (~28.8px) ni subirá de 3rem (~48px).</p>
+  </div>
+
+</body>
+</html>
