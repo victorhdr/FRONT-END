@@ -1,0 +1,172 @@
+/* ============================================
+   🎨 ESTILOS GLOBALES DEL E-COMMERCE
+============================================ */
+
+:root {
+  --color-bg: #f7f9fc;
+  --color-primary: #0d6efd;
+  --color-secondary: #6c757d;
+  --color-accent: #0dcaf0;
+  --color-dark: #0b2545;
+
+  --gap: 1rem;
+  --radius: 12px;
+  --max-width-form: 520px;
+  --font-sans: "Inter", system-ui, -apple-system, "Segoe UI", Roboto, Arial;
+}
+
+/* Reset */
+* { box-sizing: border-box; }
+html, body { height: 100%; }
+
+body {
+  font-family: var(--font-sans);
+  background: linear-gradient(180deg, var(--color-bg), #ffffff);
+  color: var(--color-dark);
+  margin: 0;
+  line-height: 1.4;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Navbar */
+.site-header {
+  border-bottom: 1px solid rgba(11,37,69,0.05);
+}
+
+/* Layout */
+.main-content {
+  min-height: calc(100vh - 220px);
+  padding: 2rem 0;
+}
+
+/* Cards */
+.card {
+  border-radius: var(--radius);
+  overflow: hidden;
+}
+.card-body { padding: 1.5rem; }
+
+/* Formularios */
+.form__group { margin-bottom: var(--gap); }
+.form label { font-weight: 600; }
+
+.form .form-control:focus {
+  box-shadow: 0 0 0 0.15rem rgba(13,110,253,0.15);
+  border-color: var(--color-primary);
+}
+
+/* Botón mostrar contraseña */
+#togglePwdLogin,
+#togglePwdRegister {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 44px;
+  cursor: pointer;
+}
+
+/* Footer */
+.site-footer {
+  border-top: 1px solid rgba(255,255,255,0.03);
+}
+
+/* Login ancho */
+.login-section .card,
+.register-section .card {
+  max-width: var(--max-width-form);
+  margin: 0 auto;
+}
+
+/* Accesibilidad */
+:focus-visible {
+  outline: 3px solid rgba(13,110,253,0.25);
+  outline-offset: 3px;
+  border-radius: 6px;
+}
+
+/* Responsive */
+@media (max-width: 767px) {
+  .card-body { padding: 1rem; }
+}
+@media (min-width: 768px) and (max-width: 1023px) {
+  .card-body { padding: 1.25rem; }
+}
+@media (min-width: 1024px) {
+  .card-body { padding: 1.75rem; }
+}
+
+/* Utilidades */
+.text-muted.small { font-size: .85rem; }
+
+/* ============================================================
+   🌙 MODO OSCURO — GLASSMORPHISM PRO
+============================================================ */
+
+body.dark-mode {
+  background: #0e0e10 !important;
+  color: #f1f1f1 !important;
+}
+
+/* Navbar cristal oscuro */
+body.dark-mode .navbar {
+  background: rgba(20,20,20,0.65) !important;
+  backdrop-filter: blur(14px) saturate(160%) !important;
+  border-bottom: 1px solid rgba(255,255,255,0.12) !important;
+}
+
+body.dark-mode .navbar .navbar-brand span {
+  color: #fff !important;
+}
+
+/* Logo no se toca */
+
+/* Cards tipo cristal */
+body.dark-mode .card,
+body.dark-mode .ua-card {
+  background: rgba(30,30,30,0.55) !important;
+  backdrop-filter: blur(18px) saturate(180%) !important;
+  border: 1px solid rgba(255,255,255,0.12) !important;
+  color: #f5f5f7 !important;
+}
+
+/* List Items */
+body.dark-mode .list-group-item {
+  background: rgba(40,40,40,0.4) !important;
+  border-color: rgba(255,255,255,0.1) !important;
+  color: #eee !important;
+}
+
+/* Footer */
+body.dark-mode .site-footer {
+  background: rgba(20,20,20,0.8) !important;
+  border-top: 1px solid rgba(255,255,255,0.1);
+  color: #ddd !important;
+}
+
+/* Links */
+body.dark-mode .nav-link { color: #f1f1f1 !important; }
+body.dark-mode .nav-link:hover { color: #a5b4fc !important; }
+
+/* Inputs */
+body.dark-mode input.form-control,
+body.dark-mode select.form-select {
+  background: #2c2c2e !important;
+  color: #fff !important;
+  border-color: #444 !important;
+}
+
+/* Gráfica */
+body.dark-mode .ua-chart::before {
+  background: rgba(255,255,255,0.25) !important;
+}
+body.dark-mode .ua-chart-bar-inner {
+  background: #4da3ff !important;
+}
+
+/* Transiciones suaves */
+*, body, .card, .ua-card, .navbar, .site-footer {
+  transition: background-color .35s ease, 
+              color .35s ease, 
+              border-color .35s ease, 
+              filter .35s ease;
+}

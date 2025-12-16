@@ -1,0 +1,185 @@
+{% extends "base.html" %}
+{% block title %}Productos - MiTienda{% endblock %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/products.css') }}">
+{% endblock %}
+
+{% block content %}
+<section class="py-4">
+
+  <h1 class="h3 mb-4 text-center">Catálogo de productos</h1>
+
+  <div class="row">
+    <!-- ============================================================
+         COLUMNA IZQUIERDA (Catálogo original + Catálogo optimizado)
+    ============================================================ -->
+    <div class="col-lg-8 mb-4">
+
+      <!-- Filtro original -->
+      <div class="row mb-4">
+        <div class="col-md-6">
+          <label class="form-label" for="filterPrice">Filtrar por precio</label>
+          <select id="filterPrice" class="form-select">
+            <option value="all">Todos</option>
+            <option value="low">Menos de 20€</option>
+            <option value="mid">20€ – 50€</option>
+            <option value="high">Más de 50€</option>
+          </select>
+        </div>
+      </div>
+
+      <!-- LISTA DE PRODUCTOS ORIGINAL -->
+      <div id="productsList" class="row g-3"></div>
+
+      <!-- -------------------------------------------------------------- -->
+      <!--         EJERCICIO 8.8 — Catálogo Optimizado (Debounce,         -->
+      <!--                     Infinite Scroll, Caché)                    -->
+      <!-- -------------------------------------------------------------- -->
+
+      <hr class="my-5">
+
+      <h2 class="h4 text-center">Catálogo Optimizado (Ejercicio 8.8)</h2>
+      <p class="text-muted text-center">Debounce + Infinite Scroll + Cache</p>
+
+      <!-- BUSCADOR OPTIMIZADO -->
+      <input 
+        id="buscador" 
+        type="text" 
+        class="form-control mt-3" 
+        placeholder="Buscar productos (debounce 300ms)..."
+      >
+
+      <!-- CONTENEDOR DE PRODUCTOS OPTIMIZADOS -->
+      <div id="catalogoOptimizado" class="row g-4 mt-4"></div>
+
+      <!-- INDICADOR DE CARGA -->
+      <div id="cargando" class="text-center mt-3 d-none">
+        <div class="spinner-border" role="status"></div>
+        <p class="mt-2 text-muted small">Cargando más productos...</p>
+      </div>
+
+
+
+      <!-- ============================================================
+           PROTOTIPO 1 — SISTEMA DE RECOMENDACIONES INTELIGENTES
+           Ampliación de la Práctica 3 — Desarrollo Front-END
+           Arquitectura MVP: Model + View + Controller
+      ============================================================ -->
+      <section class="reco-module mt-5">
+
+        <h2 class="reco-title text-center">🔎 Recomendaciones para ti</h2>
+        <p class="reco-subtitle text-center text-muted">
+          Basadas en una API externa y tus búsquedas recientes
+        </p>
+
+        <!-- Buscador AJAX -->
+        <div class="reco-search mt-4 d-flex gap-2">
+          <input 
+            id="reco-input" 
+            type="search" 
+            placeholder="Buscar productos similares..." 
+            class="form-control"
+            aria-label="Buscar recomendaciones"
+          >
+          <button id="reco-btn" class="btn btn-primary">Buscar</button>
+        </div>
+
+        <!-- Filtros del módulo -->
+        <div class="reco-filters d-flex flex-wrap gap-3 mt-3">
+          <div>
+            <label for="reco-max-price" class="form-label small">Precio máximo</label>
+            <input id="reco-max-price" type="number" placeholder="Ej: 50" class="form-control" style="max-width: 150px;">
+          </div>
+
+          <div>
+            <label for="reco-category" class="form-label small">Categoría</label>
+            <select id="reco-category" class="form-select" style="max-width: 200px;">
+              <option value="">Todas</option>
+              <option value="smartphones">Smartphones</option>
+              <option value="laptops">Laptops</option>
+              <option value="fragrances">Fragancias</option>
+              <option value="groceries">Alimentación</option>
+            </select>
+          </div>
+        </div>
+
+        <!-- Búsquedas recientes + BOTÓN 🗑 -->
+        <div class="reco-recent mt-4">
+          <div class="d-flex justify-content-between align-items-center mb-2">
+            <h5 class="mb-0">Búsquedas recientes</h5>
+            
+            <!-- 🗑 BOTÓN PARA BORRAR LAS BÚSQUEDAS -->
+            <button id="reco-clear-searches" class="btn btn-outline-danger btn-sm">
+              🗑 Eliminar búsquedas
+            </button>
+          </div>
+
+          <div id="reco-recent-list"></div>
+        </div>
+
+        <!-- Resultados -->
+        <div id="reco-results" class="reco-results mt-4"></div>
+
+      </section>
+      <!-- FIN PROTOTIPO 1 -->
+
+    </div>
+
+
+    <!-- ============================================================
+         COLUMNA DERECHA — CARRITO
+    ============================================================ -->
+    <div class="col-lg-4">
+
+      <aside class="card shadow-sm h-100">
+        <div class="card-body d-flex flex-column">
+
+          <h2 class="h5 mb-3">🛒 Carrito</h2>
+
+          <div id="cartEmptyMessage" class="text-muted small mb-2">
+            Tu carrito está vacío.
+          </div>
+
+          <ul id="cartItems" class="list-group mb-3 small"></ul>
+
+          <div class="mt-auto">
+            <div class="d-flex justify-content-between mb-2">
+              <span><strong>Artículos:</strong></span>
+              <span id="cartTotalItems">0</span>
+            </div>
+            <div class="d-flex justify-content-between mb-3">
+              <span><strong>Total:</strong></span>
+              <span id="cartTotalPrice">0.00 €</span>
+            </div>
+
+            <div class="d-grid gap-2">
+              <button id="btnClearCart" class="btn btn-outline-danger btn-sm">Vaciar carrito</button>
+              <button class="btn btn-success btn-sm" type="button" disabled>Finalizar compra (demo)</button>
+            </div>
+
+          </div>
+        </div>
+      </aside>
+
+    </div>
+  </div>
+
+</section>
+{% endblock %}
+
+{% block extra_js %}
+<script>
+  window.productsData = JSON.parse(`{{ products_data|tojson|safe }}`);
+</script>
+
+<!-- Controladores originales -->
+<script type="module" src="{{ url_for('static', filename='js/ProductController.js') }}"></script>
+<script type="module" src="{{ url_for('static', filename='js/CartController.js') }}"></script>
+
+<!-- Script Ejercicio 8.8 -->
+<script src="{{ url_for('static', filename='js/catalogo_optimizado.js') }}"></script>
+
+<!-- Controlador del Prototipo 1 -->
+<script type="module" src="{{ url_for('static', filename='js/recoController.js') }}"></script>
+{% endblock %}

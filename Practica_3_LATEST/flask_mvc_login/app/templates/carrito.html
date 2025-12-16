@@ -1,0 +1,53 @@
+{% extends "base.html" %}
+{% block title %}Carrito - MiTienda{% endblock %}
+
+{% block content %}
+<section class="py-4">
+  <div class="container">
+
+    <h1 class="h3 mb-4 text-center">🛒 Tu carrito de compra</h1>
+
+    <!-- Carrito -->
+    <div class="row justify-content-center">
+      <div class="col-lg-8">
+
+        <!-- Tabla responsive -->
+        <div class="table-responsive shadow-sm rounded">
+          <table class="table align-middle">
+            <thead class="table-light">
+              <tr>
+                <th>Producto</th>
+                <th class="text-center">Cantidad</th>
+                <th class="text-end">Precio</th>
+                <th></th>
+              </tr>
+            </thead>
+            <tbody id="cart-table-body">
+              <!-- Se rellenará desde JS -->
+            </tbody>
+          </table>
+        </div>
+
+        <!-- Resumen -->
+        <div class="d-flex justify-content-between mt-3">
+          <h5>Total artículos: <span id="carrito-total-items" class="fw-bold">0</span></h5>
+          <h5>Total: <span id="carrito-total-price" class="fw-bold">0.00 €</span></h5>
+        </div>
+
+        <!-- Botones -->
+        <div class="d-flex justify-content-between mt-4">
+          <button id="carrito-clear" class="btn btn-outline-danger">Vaciar carrito</button>
+          <button class="btn btn-success" disabled>Finalizar compra (demo)</button>
+        </div>
+
+      </div>
+    </div>
+
+  </div>
+</section>
+
+{% endblock %}
+
+{% block extra_js %}
+<script type="module" src="{{ url_for('static', filename='js/cartPage.js') }}"></script>
+{% endblock %}

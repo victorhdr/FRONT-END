@@ -1,0 +1,13 @@
+{
+  "maxQuantity": 10,
+  "disallowedCombos": [
+    {
+      "productType": "taza",
+      "size": "XL"
+    },
+    {
+      "productType": "mochila",
+      "color": "white"
+    }
+  ]
+}

@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+{% block title %}YouTube API - MiTienda{% endblock %}
+
+{% block content %}
+<div class="container py-4 text-center">
+    
+    <h1 class="h3 mb-4">🎬 API Externa: YouTube Player</h1>
+
+    <!-- Contenedor del reproductor -->
+    <div id="player" class="mx-auto" style="max-width: 600px;"></div>
+
+    <!-- Botones de control -->
+    <div class="mt-4 d-flex justify-content-center gap-3">
+        <button class="btn btn-success" id="btnPlay">▶️ Play</button>
+        <button class="btn btn-warning" id="btnPause">⏸️ Pause</button>
+        <button class="btn btn-danger" id="btnStop">⏹️ Stop</button>
+    </div>
+
+</div>
+{% endblock %}
+
+{% block extra_js %}
+<!-- API de YouTube -->
+<script src="https://www.youtube.com/iframe_api"></script>
+
+<!-- Script propio -->
+<script src="{{ url_for('static', filename='js/api_youtube.js') }}"></script>
+{% endblock %}

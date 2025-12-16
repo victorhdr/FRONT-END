@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+{% block title %}Opiniones Seguras{% endblock %}
+
+{% block content %}
+<div class="container mt-4">
+
+  <h2 class="mb-3">Opiniones (seguras)</h2>
+
+  <div class="mb-3">
+    <label for="opinionInput" class="form-label">Escribe tu opinión</label>
+    <textarea id="opinionInput" class="form-control" rows="3"></textarea>
+  </div>
+
+  <button id="btnEnviarOpinion" class="btn btn-primary">Enviar opinión</button>
+
+  <h4 class="mt-4">Opiniones recibidas</h4>
+  <div id="listaOpiniones" class="mt-3"></div>
+
+</div>
+
+<script src="{{ url_for('static', filename='js/opiniones.js') }}"></script>
+{% endblock %}

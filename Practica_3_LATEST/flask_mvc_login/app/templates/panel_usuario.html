@@ -1,0 +1,155 @@
+{% extends "base.html" %}
+{% block title %}Panel de usuario - MiTienda{% endblock %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/panel_usuario.css') }}">
+{% endblock %}
+
+{% block content %}
+<section class="py-4">
+  <div class="container ua-panel fade-in">
+
+    <!-- TITULO -->
+    <h1 class="h3 mb-3 text-center ua-title">📊 Panel de actividad del usuario</h1>
+
+    <!-- BOTONES SIEMPRE VISIBLES -->
+    <div id="debug-tools" class="text-center mb-3">
+
+      <!-- Generar actividad -->
+      <button id="btn-generate-test-activity"
+              class="btn-ios btn-ios-warning me-2"
+              data-tooltip="Generar datos de ejemplo">
+        🧪 Generar actividad
+      </button>
+
+      <!-- Borrar actividad -->
+      <button id="btn-clear-activity"
+              class="btn-danger-ios ms-2 position-relative"
+              data-tooltip="Borrar registros guardados">
+        🗑 Borrar actividad
+      </button>
+
+    </div>
+
+    <p class="text-center ua-muted mb-4">
+      Revisa tus compras, búsquedas, favoritos y tendencias de uso en tiempo real.
+    </p>
+
+    <div class="row g-4">
+
+      <!-- =======================
+           IZQUIERDA — ESTADÍSTICAS
+      ======================== -->
+      <div class="col-lg-8">
+
+        <!-- Filtros -->
+        <div class="ua-card mb-3 fade-in">
+          <h2 class="h6 mb-3 ua-title">Filtros de actividad</h2>
+
+          <div class="row g-3 align-items-end">
+            <div class="col-md-6">
+              <label for="ua-range" class="form-label small">Rango temporal</label>
+              <select id="ua-range" class="form-select">
+                <option value="7">Últimos 7 días</option>
+                <option value="30" selected>Últimos 30 días</option>
+                <option value="90">Últimos 90 días</option>
+              </select>
+            </div>
+
+            <div class="col-md-6">
+              <label for="ua-type" class="form-label small">Tipo de actividad</label>
+              <select id="ua-type" class="form-select">
+                <option value="all" selected>Todo</option>
+                <option value="purchase">Compras</option>
+                <option value="search">Búsquedas</option>
+                <option value="favorite">Favoritos</option>
+              </select>
+            </div>
+          </div>
+        </div>
+
+        <!-- Resumen -->
+        <div id="ua-summary-cards" class="row g-3 mb-3"></div>
+
+        <!-- Gráfica -->
+        <div class="ua-card fade-in">
+          <div class="d-flex justify-content-between align-items-center mb-2">
+            <h2 class="h6 mb-0 ua-title">Actividad por día</h2>
+            <span id="ua-chart-label" class="badge bg-primary-subtle text-primary small">Cargando...</span>
+          </div>
+
+          <div id="ua-chart" class="ua-chart"></div>
+
+          <p id="ua-chart-empty" class="ua-muted small mt-2 d-none">
+            No hay datos para los filtros seleccionados.
+          </p>
+        </div>
+
+      </div>
+
+      <!-- =======================
+           DERECHA — LISTA DE ACTIVIDAD
+      ======================== -->
+      <div class="col-lg-4">
+        <div class="ua-card h-100 fade-in">
+
+          <h2 class="h6 ua-title mb-3">Actividad reciente</h2>
+
+          <div id="ua-loading" class="ua-muted small mb-2">Cargando actividad...</div>
+
+          <ul id="ua-activity-list"
+              class="list-group small mb-3 flex-grow-1 overflow-auto"
+              style="max-height: 360px;"></ul>
+
+          <p id="ua-empty" class="ua-muted small d-none">No hay actividad reciente registrada.</p>
+
+          <p class="ua-muted small mt-2">
+            Los datos se generan dinámicamente y se actualizan en tiempo real.
+          </p>
+
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+{% endblock %}
+
+{% block extra_js %}
+  <!-- Controlador principal -->
+  <script type="module" src="{{ url_for('static', filename='js/UserActivityController.js') }}"></script>
+
+  <!-- Script del generador de actividad -->
+  <script src="{{ url_for('static', filename='js/generate_test_activity.js') }}"></script>
+
+  <!-- Funcionalidad botones -->
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+
+      /* 📌 1. Generar actividad */
+      const btnGen = document.getElementById("btn-generate-test-activity");
+      if (btnGen) {
+        btnGen.addEventListener("click", () => {
+          if (typeof generarActividadPrueba === "function") {
+            generarActividadPrueba();
+            alert("Actividad generada. Recarga el panel para verla.");
+          }
+        });
+      }
+
+      /* 📌 2. Borrar actividad */
+      const btnClear = document.getElementById("btn-clear-activity");
+      if (btnClear) {
+        btnClear.addEventListener("click", () => {
+          if (!confirm("¿Seguro que quieres borrar toda la actividad registrada?")) return;
+
+          localStorage.removeItem("userActivityLog");
+
+          alert("Actividad borrada correctamente.");
+          location.reload();
+        });
+      }
+
+    });
+  </script>
+{% endblock %}
