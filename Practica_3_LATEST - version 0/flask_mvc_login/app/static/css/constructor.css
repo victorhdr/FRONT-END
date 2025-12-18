@@ -1,0 +1,51 @@
+/* ============================================================
+   Constructor de productos personalizados (Prototipo 2)
+   Estilos específicos para la vista "Nuevo producto"
+============================================================ */
+
+.constructor-preview {
+  background: #f8fafc;
+  border-radius: 12px;
+  padding: 1.5rem;
+  border: 1px solid rgba(0,0,0,0.05);
+}
+
+.constructor-preview-box {
+  width: 100%;
+  height: 140px;
+  border-radius: 12px;
+  background: linear-gradient(135deg, #e9ecef, #dee2e6);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.constructor-preview-label {
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: #495057;
+}
+
+.color-swatch {
+  border-radius: 999px;
+  border: 1px solid #ced4da;
+  min-width: 44px;
+  height: 32px;
+  text-transform: capitalize;
+}
+
+.color-swatch.active {
+  border-color: #0d6efd;
+  box-shadow: 0 0 0 2px rgba(13,110,253,0.25);
+}
+
+#cfg-validation {
+  margin-top: 0.5rem;
+}
+
+/* Responsive */
+@media (max-width: 767.98px) {
+  .constructor-preview-box {
+    height: 120px;
+  }
+}

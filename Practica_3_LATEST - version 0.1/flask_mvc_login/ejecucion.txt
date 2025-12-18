@@ -1,0 +1,94 @@
+
+-----------------------------------------------------------------
+1. Abrir el proyecto en VS Code
+
+En la terminal de Linux:
+
+cd /ruta/a/Practica_3/flask_mvc_login
+code .
+
+
+(eso te abre VS Code directamente en esa carpeta).
+
+2. Crear y activar el entorno virtual
+
+En la terminal integrada de VS Code (Ctrl+ñ):
+
+python3 -m venv .venv
+.venv\Scripts\Activate.ps1
+
+✔ Si funciona, verás algo así:
+(.venv) PS E:\usuario\Desktop\Practica_3\flask_mvc_login>
+
+
+Verás algo como (.venv) al principio de la línea → entorno activado 
+
+3. Instalar dependencias
+
+Dentro del entorno:
+
+python -m pip install -r requirements.txt
+
+comprobamos con:
+python -m pip --version
+
+
+Espera a que termine sin errores.
+
+4. Crear el archivo .env a partir del ejemplo
+cp .env.example .env
+
+
+Abre .env en VS Code y revisa las variables principales:
+
+SECRET_KEY=algo_seguro
+ADMIN_EMAIL=admin@example.com
+ADMIN_PASSWORD=admin123
+DATABASE_URL=sqlite:///app.db
+
+
+Con eso ya está bien para pruebas locales.
+-----------------------------------------------------------------
+Inicializar base de datos y arrancar la app
+5. Inicializar la base de datos con datos demo
+
+Desde la raíz del proyecto (flask_mvc_login/) con el venv activado:
+
+python -m flask --app wsgi.py init-db
+
+
+Esto hace:
+
+Crea app.db si no existe
+
+Crea tablas
+
+Inserta productos demo
+
+Crea el usuario admin con el email y password definidos en .env
+
+6. Arrancar la aplicación
+
+Opciones:
+
+Opción sencilla (recomendada para desarrollo):
+python run.py
+
+
+Si run.py simplemente llama a app.run(), escuchará en http://127.0.0.1:5000.
+
+Verás en la terminal algo tipo:
+
+ * Running on http://127.0.0.1:5000
+
+7. Abrir en el navegador
+
+En Linux, abre tu navegador y entra en:
+
+http://localhost:5000
+
+
+Deberías ver:
+
+Si no estás logueado → redirección al login.
+------------------------------------------------------------

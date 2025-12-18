@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+{% block title %}Fotos Aleatorias (Picsum) - MiTienda{% endblock %}
+
+{% block extra_css %}
+<style>
+  #fotoRandom {
+    max-width: 100%;
+    border-radius: 12px;
+    box-shadow: 0 4px 14px rgba(0,0,0,0.25);
+  }
+</style>
+{% endblock %}
+
+{% block content %}
+<div class="container py-4">
+  <h1 class="h3 text-center mb-4">📸 Fotos Aleatorias (API Picsum)</h1>
+
+  <div class="text-center mb-3">
+    <button id="btnFoto" class="btn btn-primary">
+      Cargar foto aleatoria
+    </button>
+  </div>
+
+  <div id="fotoResult" class="text-center mt-4">
+    <!-- La imagen aleatoria aparecerá aquí -->
+  </div>
+</div>
+{% endblock %}
+
+{% block extra_js %}
+<script src="{{ url_for('static', filename='js/api_picsum.js') }}"></script>
+{% endblock %}

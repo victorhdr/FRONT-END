@@ -1,0 +1,218 @@
+{% extends "base.html" %}
+{% block title %}Nuevo producto - MiTienda{% endblock %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/constructor.css') }}">
+{% endblock %}
+
+{% block content %}
+<section class="py-4">
+  <div class="container">
+
+    <h1 class="h3 mb-4 text-center">Crear nuevo producto</h1>
+
+    <p class="text-center text-muted mb-5">
+      Puedes crear un producto <strong>estático</strong> usando el formulario tradicional
+      o un <strong>producto personalizado</strong> usando el constructor avanzado (Prototipo 2 – ampliación).
+    </p>
+
+    <div class="row g-5">
+
+      <!-- ============================================================
+           SECCIÓN A) FORMULARIO TRADICIONAL (código original)
+      ============================================================ -->
+      <div class="col-lg-5">
+        <div class="card shadow-sm h-100">
+          <div class="card-body">
+
+            <h2 class="h5 mb-3 text-center">Formulario clásico</h2>
+            <p class="small text-muted text-center">
+              Este formulario pertenece a la funcionalidad original de la práctica.
+            </p>
+
+            <form method="post" class="mx-auto mt-3" style="max-width:440px;">
+              
+              <!-- Nombre -->
+              <div class="mb-3">
+                <label for="name" class="form-label">Nombre</label>
+                <input type="text" id="name" name="name" class="form-control" required>
+              </div>
+
+              <!-- Precio -->
+              <div class="mb-3">
+                <label for="price" class="form-label">Precio (€)</label>
+                <input type="number" id="price" name="price" step="0.01" min="0" class="form-control" required>
+              </div>
+
+              <!-- Imagen -->
+              <div class="mb-3">
+                <label for="image_path" class="form-label">Imagen</label>
+                <select id="image_path" name="image_path" class="form-select">
+                  <option value="products/p1.svg">products/p1.svg</option>
+                  <option value="products/p2.svg">products/p2.svg</option>
+                  <option value="products/p3.svg">products/p3.svg</option>
+                  <option value="products/p4.svg">products/p4.svg</option>
+                </select>
+              </div>
+
+              <div class="d-grid">
+                <button class="btn btn-primary" type="submit">
+                  Crear producto
+                </button>
+              </div>
+
+            </form>
+
+          </div>
+        </div>
+      </div>
+
+
+
+
+      <!-- ============================================================
+           SECCIÓN B) CONSTRUCTOR PERSONALIZADO (PROTOTIPO 2)
+           Arquitectura MVP + AJAX + JSON + vista previa dinámica
+      ============================================================ -->
+      <div class="col-lg-7">
+        <div class="card shadow-sm h-100">
+          <div class="card-body">
+
+            <h2 class="h5 mb-3 text-center">Constructor de productos personalizados</h2>
+            <p class="small text-muted text-center">
+              Este módulo forma parte de la ampliación avanzada de la práctica (Prototipo 2).
+            </p>
+
+            <div class="row g-4">
+
+
+              <!-- ===========================
+                   COLUMNA IZQ → CONFIGURADOR
+              ============================ -->
+              <div class="col-12">
+
+                <!-- Tipo -->
+                <div class="mb-3">
+                  <label for="cfg-product-type" class="form-label">Tipo de producto</label>
+                  <select id="cfg-product-type" class="form-select">
+                    <option value="camiseta">Camiseta</option>
+                    <option value="taza">Taza</option>
+                    <option value="mochila">Mochila</option>
+                  </select>
+                </div>
+
+                <!-- Colores -->
+                <div class="mb-3">
+                  <span class="form-label d-block mb-1">Color principal</span>
+                  <div class="d-flex flex-wrap gap-2" id="cfg-color-group">
+                    <button class="btn btn-sm color-swatch active" data-color="white">Blanco</button>
+                    <button class="btn btn-sm color-swatch" data-color="black">Negro</button>
+                    <button class="btn btn-sm color-swatch" data-color="red">Rojo</button>
+                    <button class="btn btn-sm color-swatch" data-color="blue">Azul</button>
+                    <button class="btn btn-sm color-swatch" data-color="green">Verde</button>
+                  </div>
+                </div>
+
+                <!-- Talla -->
+                <div class="mb-3">
+                  <label for="cfg-size" class="form-label">Talla</label>
+                  <select id="cfg-size" class="form-select">
+                    <option value="none">No aplica</option>
+                    <option value="S">S</option>
+                    <option value="M" selected>M</option>
+                    <option value="L">L</option>
+                    <option value="XL">XL</option>
+                  </select>
+                </div>
+
+                <!-- Extras -->
+                <div class="mb-3">
+                  <span class="form-label d-block mb-1">Extras</span>
+
+                  <div class="form-check">
+                    <input class="form-check-input" type="checkbox" id="extra-logo">
+                    <label class="form-check-label" for="extra-logo">Logo frontal (+3€)</label>
+                  </div>
+
+                  <div class="form-check">
+                    <input class="form-check-input" type="checkbox" id="extra-estampado">
+                    <label class="form-check-label" for="extra-estampado">Estampado completo (+5€)</label>
+                  </div>
+
+                  <div class="form-check">
+                    <input class="form-check-input" type="checkbox" id="extra-edicion">
+                    <label class="form-check-label" for="extra-edicion">Edición limitada (+7€)</label>
+                  </div>
+                </div>
+
+                <!-- Cantidad -->
+                <div class="mb-3">
+                  <label for="cfg-quantity" class="form-label">Cantidad</label>
+                  <input type="number" id="cfg-quantity" class="form-control" value="1" min="1" max="10">
+                </div>
+
+                <!-- Validaciones AJAX -->
+                <div id="cfg-validation" class="alert alert-info small d-none"></div>
+
+                <!-- Botón GENERAR JSON -->
+                <div class="d-grid mt-3">
+                  <button id="cfg-generate-json" class="btn btn-success">
+                    Generar configuración (JSON)
+                  </button>
+                </div>
+
+                <!-- =====================================================
+                     NUEVO BOTÓN → AÑADIR AL CARRITO
+                     (Necesario para integrar prototipo con carrito)
+                ====================================================== -->
+                <div class="d-grid mt-2">
+                  <button id="cfg-add-cart" class="btn btn-primary">
+                    Añadir al carrito
+                  </button>
+                </div>
+
+              </div>
+
+
+
+              <!-- ===========================
+                   COLUMNA DCHA → VISTA PREVIA
+              ============================ -->
+              <div class="col-12">
+
+                <div id="cfg-preview" class="constructor-preview mb-4">
+                  <div class="constructor-preview-box"></div>
+
+                  <h3 id="cfg-preview-title" class="h6 mt-3">Camiseta básica</h3>
+                  <p id="cfg-preview-details" class="small text-muted">
+                    Color blanco · Talla M · Sin extras
+                  </p>
+
+                  <p><strong>Precio estimado:</strong>
+                    <span id="cfg-preview-price">0.00 €</span>
+                  </p>
+                </div>
+
+                <!-- JSON final -->
+                <h3 class="h6 mt-3">Configuración generada (JSON)</h3>
+                <pre id="cfg-json-output" class="bg-light border rounded small p-3 overflow-auto">
+Selecciona opciones y pulsa "Generar configuración (JSON)".
+                </pre>
+
+              </div>
+
+            </div> <!-- /row constructor -->
+
+          </div>
+        </div>
+      </div>
+
+    </div> <!-- /row principal -->
+
+  </div>
+</section>
+{% endblock %}
+
+{% block extra_js %}
+<script type="module" src="{{ url_for('static', filename='js/constructorController.js') }}"></script>
+{% endblock %}

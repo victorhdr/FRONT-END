@@ -1,0 +1,272 @@
+/* ============================================================
+   🎨 TEMA APPLE / iOS PARA PANEL DE USUARIO — VERSIÓN OPTIMIZADA
+============================================================ */
+
+:root {
+  --ua-bg: #f5f7fa;
+  --ua-card-bg: #ffffff;
+  --ua-border: rgba(0,0,0,0.06);
+  --ua-text: #1c1c1e;
+  --ua-muted: #6e6e73;
+
+  --ua-primary: #007aff;
+  --ua-accent: #34c759;
+}
+
+/* Fondo general */
+.ua-panel {
+  background: var(--ua-bg);
+  padding: 2rem;
+  border-radius: 20px;
+}
+
+/* Tarjetas */
+.ua-card {
+  background: var(--ua-card-bg);
+  border-radius: 16px;
+  padding: 1.5rem;
+  border: 1px solid var(--ua-border);
+  box-shadow: 0 4px 16px rgba(0,0,0,0.04);
+  transition: background 0.25s, transform 0.25s;
+}
+
+.ua-card:hover {
+  transform: translateY(-2px);
+}
+
+/* Textos */
+.ua-title {
+  font-weight: 600;
+  color: var(--ua-text);
+}
+
+.ua-muted {
+  color: var(--ua-muted);
+}
+
+/* ============================================================
+   📊 GRÁFICA DE BARRAS
+============================================================ */
+
+.ua-chart {
+  display: flex;
+  align-items: flex-end;
+  gap: 14px;
+  position: relative;
+  height: 240px;       /* ALTURA FIJA (clave para % de barras) */
+  min-height: 240px;
+  padding: 1rem 0;
+  overflow: visible;
+}
+
+/* Línea base */
+.ua-chart::before {
+  content: "";
+  position: absolute;
+  left: 0; right: 0;
+  bottom: 0;
+  height: 2px;
+  background: rgba(0,0,0,0.1);
+}
+
+/* Contenedor de cada barra */
+.ua-chart-bar {
+  flex: 1;
+  height: 100%;                 /* ← CLAVE PARA EL % DE LAS BARRAS */
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  align-items: center;
+  text-align: center;
+}
+
+/* Barra interna: recibe height: var(--final-height) */
+.ua-chart-bar-inner {
+  width: 100%;
+  background: var(--ua-primary);
+  border-radius: 10px 10px 0 0;
+  height: var(--final-height, 0%);   /* ← AQUÍ SE APLICA TU % FINAL */
+  min-height: 4px;                  /* evita colapsos de 0px */
+  transition: height 0.6s ease, background 0.25s ease;
+}
+
+/* Hover */
+.ua-chart-bar-inner:hover {
+  background: var(--ua-accent);
+}
+
+/* Tooltip */
+.ua-chart-bar-inner:hover::after {
+  content: attr(data-tooltip);
+  position: absolute;
+  top: -28px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: #1c1c1e;
+  color: #fff;
+  padding: 4px 8px;
+  border-radius: 6px;
+  font-size: 0.75rem;
+  white-space: nowrap;
+  pointer-events: none;
+}
+
+/* Etiquetas */
+.ua-chart-bar-value {
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: var(--ua-text);
+  margin-bottom: 4px;
+}
+
+.ua-chart-bar-label {
+  font-size: 0.75rem;
+  color: var(--ua-muted);
+}
+
+/* ============================================================
+   📃 ACTIVIDAD RECIENTE
+============================================================ */
+
+.ua-activity-item {
+  border-left: 4px solid var(--ua-primary);
+  padding-left: 10px;
+  margin-bottom: 8px;
+}
+
+.ua-activity-item strong {
+  color: var(--ua-text);
+}
+
+.ua-activity-item small {
+  color: var(--ua-muted);
+}
+
+/* ============================================================
+   ✨ Animación de entrada
+============================================================ */
+
+.fade-in {
+  opacity: 0;
+  transform: translateY(10px);
+  animation: fadeInUp 0.5s forwards;
+}
+
+@keyframes fadeInUp {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* ===========================================
+   🗑 BOTÓN iOS PARA BORRAR ACTIVIDAD
+=========================================== */
+
+.btn-danger-ios {
+  background: #ff3b30;
+  border: none;
+  color: #fff;
+  font-weight: 600;
+  padding: 6px 14px;
+  border-radius: 10px;
+  box-shadow: 0 3px 10px rgba(255, 59, 48, 0.25);
+  transition: transform 0.15s ease, box-shadow 0.2s ease;
+}
+
+.btn-danger-ios:hover {
+  background: #ff453a;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 12px rgba(255, 59, 48, 0.35);
+}
+
+.btn-danger-ios:active {
+  transform: scale(0.96);
+}
+
+/* Tooltip elegante */
+.btn-danger-ios[data-tooltip]:hover::after {
+  content: attr(data-tooltip);
+  position: absolute;
+  top: -34px;
+  left: 50%;
+  transform: translateX(-50%);
+  padding: 4px 10px;
+  background: #1c1c1e;
+  color: #fff;
+  font-size: 0.75rem;
+  border-radius: 6px;
+  white-space: nowrap;
+  pointer-events: none;
+  opacity: 0;
+  animation: fadeTooltip 0.25s forwards ease;
+}
+
+@keyframes fadeTooltip {
+  to { opacity: 1; }
+}
+
+/* ============================================================
+   BOTONES ESTILO iOS PARA EL PANEL DE USUARIO
+   ============================================================ */
+
+.btn-ios {
+  border: none;
+  padding: 8px 18px;
+  border-radius: 12px;
+  font-weight: 600;
+  font-size: 0.9rem;
+  color: white;
+  cursor: pointer;
+  position: relative;
+  transition: transform 0.15s ease, box-shadow 0.3s ease;
+}
+
+/* AMARILLO iOS (Advertencia suave) */
+.btn-ios-warning {
+  background: #ffcc00;
+  color: #000;
+  box-shadow: 0 3px 10px rgba(255, 204, 0, 0.35);
+}
+
+.btn-ios-warning:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 14px rgba(255, 204, 0, 0.45);
+}
+
+/* ROJO iOS (Acción destructiva) */
+.btn-ios-danger {
+  background: #ff3b30;
+  box-shadow: 0 3px 10px rgba(255, 59, 48, 0.35);
+}
+
+.btn-ios-danger:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 14px rgba(255, 59, 48, 0.45);
+}
+
+/* CLIC */
+.btn-ios:active {
+  transform: scale(0.97);
+}
+
+/* TOOLTIP */
+.btn-ios[data-tooltip]:hover::after {
+  content: attr(data-tooltip);
+  position: absolute;
+  top: -34px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: #1c1c1e;
+  color: #fff;
+  padding: 4px 10px;
+  border-radius: 6px;
+  font-size: 0.75rem;
+  white-space: nowrap;
+  opacity: 0;
+  animation: iosTooltip 0.25s forwards ease;
+}
+
+@keyframes iosTooltip {
+  to { opacity: 1; }
+}

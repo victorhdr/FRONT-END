@@ -1,0 +1,95 @@
+/* products.css - estilos específicos para la vista de productos + carrito */
+
+/* Imagen de producto en las cards */
+#productsList .card img {
+  object-fit: contain;
+  max-height: 140px;
+}
+
+/* Lista del carrito: scroll si hay muchos productos */
+#cartItems {
+  max-height: 260px;
+  overflow-y: auto;
+}
+
+/* Un pelín más compacto el texto del carrito */
+#cartItems .list-group-item {
+  font-size: 0.9rem;
+}
+
+/* Ajuste para pantallas pequeñas */
+@media (max-width: 767.98px) {
+  #cartItems {
+    max-height: 200px;
+  }
+}
+/* ============================================================
+   ESTILOS DEL MÓDULO DE RECOMENDACIONES
+   Optimizado para accesibilidad + legibilidad + responsive
+============================================================ */
+
+.reco-module {
+  background: #fff;
+  padding: 1.5rem;
+  border-radius: 12px;
+  box-shadow: 0 2px 15px rgba(0,0,0,0.08);
+}
+
+.reco-title {
+  font-size: 1.5rem;
+  font-weight: 600;
+}
+
+.reco-subtitle {
+  color: #6c757d;
+  margin-bottom: 1rem;
+}
+
+.reco-search,
+.reco-filters {
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.reco-chip {
+  background: #e8f0ff;
+  padding: 5px 10px;
+  border-radius: 20px;
+  cursor: pointer;
+  margin-right: 5px;
+  border: 1px solid transparent;
+  transition: 0.2s;
+}
+
+.reco-chip:hover {
+  background: #d8e6ff;
+  border-color: #0d6efd;
+}
+
+.reco-results {
+  margin-top: 1rem;
+  display: grid;
+  grid-template-columns: repeat(auto-fill,minmax(180px,1fr));
+  gap: 1rem;
+}
+
+.reco-card {
+  background: #fafafa;
+  padding: 1rem;
+  border-radius: 10px;
+  text-align: center;
+  box-shadow: 0 1px 8px rgba(0,0,0,0.05);
+  transition: transform 0.15s;
+}
+
+.reco-card:hover {
+  transform: translateY(-3px);
+}
+
+.reco-card img {
+  width: 100%;
+  height: 120px;
+  object-fit: cover;
+  border-radius: 8px;
+}

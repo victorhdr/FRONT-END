@@ -1,0 +1,114 @@
+/* products.css - estilos específicos para la vista de productos + carrito */
+
+/* Imagen de producto en las cards */
+#productsList .card img {
+  object-fit: contain;
+  max-height: 140px;
+}
+
+/* ============================================================
+   MINI-CARRITO (usa el mismo sistema que "Nuevo producto")
+   El scroll se controla desde .mini-cart
+============================================================ */
+
+/* Solo ajustamos tipografía, NO el scroll */
+.mini-cart #cartItems .list-group-item {
+  font-size: 0.9rem;
+}
+
+/* Ajuste para pantallas pequeñas */
+/* En móvil reducimos la altura del listado para evitar scroll excesivo */
+@media (max-width: 767.98px) {
+  .mini-cart #cartItems {
+    max-height: 200px;
+  }
+}
+
+/* =====================================================
+   MINI-CARRITO — ALTURA CONTROLADA Y SCROLL INTERNO
+   ===================================================== */
+
+/* El contenedor del carrito no ocupa toda la pantalla */
+.mini-cart {
+  max-height: 70vh;            /* nunca llega al footer */
+  position: sticky;
+  top: 90px;                   /* debajo de la navbar */
+}
+
+/* La lista crece y hace scroll solo si hace falta */
+.mini-cart #cartItems {
+  overflow-y: auto;
+  max-height: 35vh;            /* espacio reservado al listado */
+}
+
+
+/* ============================================================
+   ESTILOS DEL MÓDULO DE RECOMENDACIONES
+   Optimizado para accesibilidad + legibilidad + responsive
+============================================================ */
+
+.reco-module {
+  background: #fff;
+  padding: 1.5rem;
+  border-radius: 12px;
+  box-shadow: 0 2px 15px rgba(0,0,0,0.08);
+}
+
+.reco-title {
+  font-size: 1.5rem;
+  font-weight: 600;
+}
+
+.reco-subtitle {
+  color: #6c757d;
+  margin-bottom: 1rem;
+}
+
+.reco-search,
+.reco-filters {
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.reco-chip {
+  background: #e8f0ff;
+  padding: 5px 10px;
+  border-radius: 20px;
+  cursor: pointer;
+  margin-right: 5px;
+  border: 1px solid transparent;
+  transition: 0.2s;
+}
+
+.reco-chip:hover {
+  background: #d8e6ff;
+  border-color: #0d6efd;
+}
+
+.reco-results {
+  margin-top: 1rem;
+  display: grid;
+  grid-template-columns: repeat(auto-fill,minmax(180px,1fr));
+  gap: 1rem;
+}
+
+.reco-card {
+  background: #fafafa;
+  padding: 1rem;
+  border-radius: 10px;
+  text-align: center;
+  box-shadow: 0 1px 8px rgba(0,0,0,0.05);
+  transition: transform 0.15s;
+}
+
+.reco-card:hover {
+  transform: translateY(-3px);
+}
+
+.reco-card img {
+  width: 100%;
+  height: 120px;
+  object-fit: cover;
+  border-radius: 8px;
+}

@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+{% block title %}Mapa OSM - MiTienda{% endblock %}
+
+{% block extra_css %}
+<link rel="stylesheet" 
+href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+
+<style>
+  #map {
+    height: 450px;
+    width: 100%;
+    border-radius: 12px;
+  }
+</style>
+{% endblock %}
+
+{% block content %}
+<div class="container py-4">
+  <h1 class="h3 text-center mb-4">🗺️ API Externa: OpenStreetMap</h1>
+
+  <div id="map" class="shadow"></div>
+</div>
+{% endblock %}
+
+{% block extra_js %}
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+
+<script src="{{ url_for('static', filename='js/api_osm.js') }}"></script>
+{% endblock %}
