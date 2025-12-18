@@ -6,7 +6,11 @@ export const CartModel = {
 
   init() {
     const saved = localStorage.getItem(STORAGE_KEY);
-    this.cart = saved ? JSON.parse(saved) : [];
+
+    // 🔹 NUEVO: normalizar IDs a string al cargar del storage
+    this.cart = saved
+      ? JSON.parse(saved).map(item => ({ ...item, id: String(item.id) }))
+      : [];
   },
 
   save() {
@@ -17,23 +21,38 @@ export const CartModel = {
     return this.cart;
   },
 
-  addItem({ id, name, price }) {
-    const existing = this.cart.find(item => item.id === id);
+  addItem({ id, name, price, quantity, details, detailsText }) {
+    // 🔹 NUEVO: asegurar ID como string
+    const normalizedId = String(id);
+
+    const existing = this.cart.find(item => item.id === normalizedId);
+
+    // Si no llega quantity (botones clásicos), se asume 1
+    const q = Number(quantity) > 0 ? Number(quantity) : 1;
+
     if (existing) {
-      existing.quantity += 1;
+      existing.quantity += q; // ✅ suma la cantidad recibida
     } else {
       this.cart.push({
-        id,
+        id: normalizedId, // 🔹 NUEVO: guardar ID normalizado
         name,
         price,
-        quantity: 1
+        quantity: q,
+
+        // opcional: conservar detalles si vienen (no rompe nada si no se usan)
+        details,
+        detailsText
       });
     }
+
     this.save();
   },
 
   removeItem(id) {
-    this.cart = this.cart.filter(item => item.id !== id);
+    // 🔹 NUEVO: normalizar ID recibido
+    const normalizedId = String(id);
+
+    this.cart = this.cart.filter(item => item.id !== normalizedId);
     this.save();
   },
 

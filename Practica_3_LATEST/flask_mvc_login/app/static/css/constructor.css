@@ -49,3 +49,20 @@
     height: 120px;
   }
 }
+
+/* =====================================================
+   MINI-CARRITO — ALTURA CONTROLADA Y SCROLL INTERNO
+   ===================================================== */
+
+/* El contenedor del carrito no ocupa toda la pantalla */
+.mini-cart {
+  max-height: 70vh;            /* nunca llega al footer */
+  position: sticky;
+  top: 90px;                   /* debajo de la navbar */
+}
+
+/* La lista crece y hace scroll solo si hace falta */
+.mini-cart #cartItems {
+  overflow-y: auto;
+  max-height: 35vh;            /* espacio reservado al listado */
+}

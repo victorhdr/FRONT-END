@@ -16,12 +16,18 @@
       o un <strong>producto personalizado</strong> usando el constructor avanzado (Prototipo 2 – ampliación).
     </p>
 
+    <!-- ============================================================
+         LAYOUT PRINCIPAL
+         - Columna izquierda: formulario clásico
+         - Columna central: constructor personalizado
+         - Columna derecha: mini-carrito (reutiliza CartView)
+    ============================================================ -->
     <div class="row g-5">
 
       <!-- ============================================================
            SECCIÓN A) FORMULARIO TRADICIONAL (código original)
       ============================================================ -->
-      <div class="col-lg-5">
+      <div class="col-lg-4">
         <div class="card shadow-sm h-100">
           <div class="card-body">
 
@@ -67,14 +73,11 @@
         </div>
       </div>
 
-
-
-
       <!-- ============================================================
            SECCIÓN B) CONSTRUCTOR PERSONALIZADO (PROTOTIPO 2)
            Arquitectura MVP + AJAX + JSON + vista previa dinámica
       ============================================================ -->
-      <div class="col-lg-7">
+      <div class="col-lg-5">
         <div class="card shadow-sm h-100">
           <div class="card-body">
 
@@ -84,7 +87,6 @@
             </p>
 
             <div class="row g-4">
-
 
               <!-- ===========================
                    COLUMNA IZQ → CONFIGURADOR
@@ -162,18 +164,16 @@
                 </div>
 
                 <!-- =====================================================
-                     NUEVO BOTÓN → AÑADIR AL CARRITO
-                     (Necesario para integrar prototipo con carrito)
+                     BOTÓN → AÑADIR AL CARRITO
+                     Lanza un evento "add-to-cart" que escucha CartController
                 ====================================================== -->
                 <div class="d-grid mt-2">
-                  <button id="cfg-add-cart" class="btn btn-primary">
+                  <button id="cfg-add-to-cart" class="btn btn-primary">
                     Añadir al carrito
                   </button>
                 </div>
 
               </div>
-
-
 
               <!-- ===========================
                    COLUMNA DCHA → VISTA PREVIA
@@ -207,6 +207,49 @@ Selecciona opciones y pulsa "Generar configuración (JSON)".
         </div>
       </div>
 
+      <!-- ============================================================
+           SECCIÓN C) MINI-CARRITO
+           Reutiliza exactamente la misma estructura que en "Productos"
+           y se actualiza mediante CartController + CartView
+      ============================================================ -->
+      <div class="col-lg-3">
+        <aside class="card shadow-sm mini-cart">
+          <div class="card-body d-flex flex-column">
+
+            <h2 class="h6 mb-3">🛒 Carrito</h2>
+
+            <div id="cartEmptyMessage" class="text-muted small mb-2">
+              Tu carrito está vacío.
+            </div>
+
+            <!-- Lista dinámica del carrito -->
+            <ul id="cartItems" class="list-group mb-3 small"></ul>
+
+            <div class="mt-auto">
+              <div class="d-flex justify-content-between mb-2">
+                <span><strong>Artículos:</strong></span>
+                <span id="cartTotalItems">0</span>
+              </div>
+
+              <div class="d-flex justify-content-between mb-3">
+                <span><strong>Total:</strong></span>
+                <span id="cartTotalPrice">0.00 €</span>
+              </div>
+
+              <div class="d-grid gap-2">
+                <button id="btnClearCart" class="btn btn-outline-danger btn-sm">
+                  Vaciar carrito
+                </button>
+                <a href="{{ url_for('main.carrito') }}" class="btn btn-success btn-sm">
+                  Ver carrito
+                </a>
+              </div>
+            </div>
+
+          </div>
+        </aside>
+      </div>
+
     </div> <!-- /row principal -->
 
   </div>
@@ -214,5 +257,6 @@ Selecciona opciones y pulsa "Generar configuración (JSON)".
 {% endblock %}
 
 {% block extra_js %}
-<script type="module" src="{{ url_for('static', filename='js/constructorController.js') }}"></script>
+  <!-- JS del constructor -->
+  <script type="module" src="{{ url_for('static', filename='js/constructorController.js') }}"></script>
 {% endblock %}

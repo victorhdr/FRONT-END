@@ -57,7 +57,7 @@ async function recargarCatalogoFetch() {
             catalogoFetchContainer.appendChild(card);
         });
 
-        // 🔥 Asegurar que el catálogo SIEMPRE se muestre tras recargar
+        // Asegurar que el catálogo SIEMPRE se muestre tras recargar
         catalogoFetchContainer.style.display = "flex";
 
         // Mostrar botón toggle si estaba oculto

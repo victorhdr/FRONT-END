@@ -46,7 +46,13 @@ document.addEventListener("DOMContentLoaded", () => {
       const tr = document.createElement("tr");
 
       tr.innerHTML = `
-        <td><strong>${item.name}</strong></td>
+        <td>
+          <strong>${item.name}</strong>
+          ${item.detailsText
+            ? `<div class="text-muted small">${item.detailsText}</div>`
+            : ""
+          }
+        </td>
 
         <td class="text-center">
           <!-- Botón para disminuir cantidad -->

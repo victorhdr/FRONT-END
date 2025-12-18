@@ -6,23 +6,42 @@
   max-height: 140px;
 }
 
-/* Lista del carrito: scroll si hay muchos productos */
-#cartItems {
-  max-height: 260px;
-  overflow-y: auto;
-}
+/* ============================================================
+   MINI-CARRITO (usa el mismo sistema que "Nuevo producto")
+   El scroll se controla desde .mini-cart
+============================================================ */
 
-/* Un pelín más compacto el texto del carrito */
-#cartItems .list-group-item {
+/* Solo ajustamos tipografía, NO el scroll */
+.mini-cart #cartItems .list-group-item {
   font-size: 0.9rem;
 }
 
 /* Ajuste para pantallas pequeñas */
+/* En móvil reducimos la altura del listado para evitar scroll excesivo */
 @media (max-width: 767.98px) {
-  #cartItems {
+  .mini-cart #cartItems {
     max-height: 200px;
   }
 }
+
+/* =====================================================
+   MINI-CARRITO — ALTURA CONTROLADA Y SCROLL INTERNO
+   ===================================================== */
+
+/* El contenedor del carrito no ocupa toda la pantalla */
+.mini-cart {
+  max-height: 70vh;            /* nunca llega al footer */
+  position: sticky;
+  top: 90px;                   /* debajo de la navbar */
+}
+
+/* La lista crece y hace scroll solo si hace falta */
+.mini-cart #cartItems {
+  overflow-y: auto;
+  max-height: 35vh;            /* espacio reservado al listado */
+}
+
+
 /* ============================================================
    ESTILOS DEL MÓDULO DE RECOMENDACIONES
    Optimizado para accesibilidad + legibilidad + responsive

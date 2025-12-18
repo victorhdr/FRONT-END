@@ -128,19 +128,60 @@ class ConstructorController {
    *   podrá añadirlo sin acoplamiento.
    */
   handleAddToCart() {
-    // Recuperar del localStorage
-    const producto = JSON.parse(localStorage.getItem("productoPersonalizado"));
+    // Obtener SIEMPRE la configuración actual del formulario
+    const producto = this.view.getCurrentConfig();
+
+    // Recalcular precios para esta configuración concreta
+    const precios = this.model.calcularPrecio(producto);
 
     if (!producto) {
       alert("Primero genera la configuración (JSON).");
       return;
     }
 
+    // ------------------------------------------------------------
+    // 🔹 NUEVO: crear un texto legible con los detalles de la personalización
+    // Este texto se usará directamente en el mini-carrito y en el carrito
+    // sin que el carrito tenga que interpretar la estructura interna
+    // ------------------------------------------------------------
+    const extrasText = producto.extras.length
+      ? producto.extras.join(", ")
+      : "Sin extras";
+
+    const detailsText =
+      `Color ${producto.color} · Talla ${producto.size} · ${extrasText}`;
+
+    // ------------------------------------------------------------
+    // 🔹 NUEVO: crear un ID estable según la configuración
+    // Misma configuración → mismo ID → se suma cantidad en el carrito
+    // ------------------------------------------------------------
+    const configKey = JSON.stringify({
+      productType: producto.productType,
+      color: producto.color,
+      size: producto.size,
+      extras: producto.extras
+    });
+
     // Construcción del item compatible con el carrito
     const cartItem = {
-      id: Date.now(),  
+      id: configKey,   // 🔧 CAMBIO: antes Date.now(), ahora ID estable
       name: `Personalizado (${producto.productType})`,
-      price: producto.pricing.total  // el carrito usa solo PRICE
+
+      // 🔧 CAMBIO: usar el precio calculado, no producto.pricing
+      price: precios.unitPrice,
+
+      quantity: producto.quantity || 1,    // 🔧 cantidad real del configurador
+
+      // Detalles estructurados (opcional, para futuras ampliaciones)
+      details: {
+        productType: producto.productType,
+        color: producto.color,
+        size: producto.size,
+        extras: producto.extras
+      },
+
+      // 🔹 NUEVO: texto listo para mostrar en el carrito
+      detailsText
     };
 
     // ------------------------------------------------------------
@@ -152,7 +193,7 @@ class ConstructorController {
       new CustomEvent("add-to-cart", { detail: cartItem })
     );
 
-    alert("Producto personalizado añadido al carrito 🎉");
+    // (Aviso visual gestionado por el carrito, no aquí)
   }
 }
 

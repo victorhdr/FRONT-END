@@ -26,14 +26,25 @@ export const CartView = {
         li.innerHTML = `
           <div class="me-2">
             <div><strong>${item.name}</strong></div>
-            <div class="text-muted small">${item.quantity} x ${item.price.toFixed(2)} €</div>
+
+            ${item.detailsText
+              ? `<div class="text-muted small">${item.detailsText}</div>`
+              : ""
+            }
+
+            <div class="text-muted small">
+              ${item.quantity} x ${item.price.toFixed(2)} €
+            </div>
           </div>
+
           <div class="d-flex align-items-center gap-2">
-            <span class="fw-bold">${(item.price * item.quantity).toFixed(2)} €</span>
+            <span class="fw-bold">
+              ${(item.price * item.quantity).toFixed(2)} €
+            </span>
             <button 
               class="btn btn-outline-danger btn-sm btn-remove-item"
               type="button"
-              data-id="${item.id}"
+              data-id="${encodeURIComponent(item.id)}"
               aria-label="Eliminar ${item.name} del carrito"
             >
               ✕
@@ -61,7 +72,7 @@ export const CartView = {
     list.addEventListener("click", (e) => {
       const btn = e.target.closest(".btn-remove-item");
       if (!btn) return;
-      const id = parseInt(btn.dataset.id, 10);
+      const id = decodeURIComponent(btn.dataset.id);
       handler(id);
     });
   }
